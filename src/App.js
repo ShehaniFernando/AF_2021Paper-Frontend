@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+
+//IMPORT BROWSERROUTER
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+//IMPORT
+import NavBar from './components/navBar/navBar';
+import Categories from './components/categories/categories';
+import CreateFood from './components/createFood/createFood';
+import CreateCategory from './components/createCategory/createCategory';
+import FoodList from './components/categories/foodList';
+import Foods from './components/foods/foods';
+import Order from './components/categories/order';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+          <NavBar/>
+          <section>
+            <Switch>
+              <Route path = "/" component={Categories} exact/>
+              <Route path = "/create-food" component={CreateFood} />
+              <Route path = "/create-category" component={CreateCategory} />
+              <Route path="/food/:id" component={FoodList} exact/>
+              <Route path="/view-food" component={Foods}/>
+              <Route path="/view-order" component={Order}/>
+            </Switch>
+          </section>
+      </Router>
     </div>
   );
 }
